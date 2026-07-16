@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bgjl4v7ef6snl"]
+
+[ext_resource type="Texture2D" uid="uid://7ricdr8yo40w" path="res://assets/player/hero.png" id="1_8afob"]
+[ext_resource type="Script" uid="uid://uu62cb23ncpq" path="res://script/player/player.gd" id="1_dovo2"]
+[ext_resource type="Script" uid="uid://b52kfamnvuq7l" path="res://script/player/state/idle.gd" id="3_lvxji"]
+[ext_resource type="Script" uid="uid://cmjufri85jfpy" path="res://script/player/state/jump.gd" id="4_75vfm"]
+[ext_resource type="Script" uid="uid://c1y6qwf4jviaq" path="res://script/player/state/run.gd" id="4_p47bc"]
+[ext_resource type="Script" uid="uid://c0unpl334h4bf" path="res://script/player/state/fall.gd" id="5_0owmy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
+radius = 12.0
+height = 54.0
+
+[node name="player" type="CharacterBody2D" unique_id=1907286066]
+script = ExtResource("1_dovo2")
+
+[node name="states" type="Node" parent="." unique_id=1430246708]
+
+[node name="idle" type="Node" parent="states" unique_id=1648319373]
+unique_name_in_owner = true
+script = ExtResource("3_lvxji")
+
+[node name="run" type="Node" parent="states" unique_id=728570276]
+unique_name_in_owner = true
+script = ExtResource("4_p47bc")
+
+[node name="jump" type="Node" parent="states" unique_id=1730373496]
+unique_name_in_owner = true
+script = ExtResource("4_75vfm")
+
+[node name="fall" type="Node" parent="states" unique_id=485692790]
+unique_name_in_owner = true
+script = ExtResource("5_0owmy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1640759888]
+texture = ExtResource("1_8afob")
+hframes = 16
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=55395139]
+position = Vector2(-1, 12)
+shape = SubResource("CapsuleShape2D_dovo2")
+
+[node name="Label" type="Label" parent="." unique_id=1365190626]
+offset_left = -48.0
+offset_top = -39.0
+offset_right = 47.0
+offset_bottom = -16.0
+text = "LABEL"
+horizontal_alignment = 1
