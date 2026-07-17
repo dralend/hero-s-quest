@@ -2,6 +2,7 @@ class_name PlayerStateJump extends PlayerState
 
 @export var jump_velocity: float = 450.0
 
+
 # what happens when this state is initialized?
 func init() -> void:
 	
@@ -10,7 +11,7 @@ func init() -> void:
 
 # what happens when we enter this state?
 func enter() -> void:
-	player.velocity.y -= jump_velocity
+	player.velocity.y = -jump_velocity
 	pass
 
 
@@ -22,7 +23,9 @@ func exit()-> void:
 
 # what happens when an input is pressed?
 func handle_input(_event : InputEvent) -> PlayerState:
-	
+	if _event.is_action_released("jump"):
+		player.velocity.y *= 0.5
+		return fall
 	return next_state
 
 
@@ -38,5 +41,5 @@ func physics_process(_delta: float) -> PlayerState:
 		return idle
 	elif player.velocity.y >= 0:
 		return fall
-	
+	player.velocity.x = player.move_speed
 	return next_state

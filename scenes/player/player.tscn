@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cmjufri85jfpy" path="res://script/player/state/jump.gd" id="4_75vfm"]
 [ext_resource type="Script" uid="uid://c1y6qwf4jviaq" path="res://script/player/state/run.gd" id="4_p47bc"]
 [ext_resource type="Script" uid="uid://c0unpl334h4bf" path="res://script/player/state/fall.gd" id="5_0owmy"]
+[ext_resource type="Script" uid="uid://cjk5usstn8em8" path="res://script/player/state/crouch.gd" id="6_0owmy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
 radius = 12.0
@@ -27,10 +28,15 @@ script = ExtResource("4_p47bc")
 [node name="jump" type="Node" parent="states" unique_id=1730373496]
 unique_name_in_owner = true
 script = ExtResource("4_75vfm")
+jump_velocity = null
 
 [node name="fall" type="Node" parent="states" unique_id=485692790]
 unique_name_in_owner = true
 script = ExtResource("5_0owmy")
+
+[node name="crouch" type="Node" parent="states" unique_id=1739887963]
+unique_name_in_owner = true
+script = ExtResource("6_0owmy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1640759888]
 texture = ExtResource("1_8afob")

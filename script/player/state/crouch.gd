@@ -1,6 +1,6 @@
-class_name PlayerStateIdle extends PlayerState
+class_name PlayerStateCrouch extends PlayerState
 
-
+@export var deceleration_rate: float = 10
 
 # what happens when this state is initialized?
 func init() -> void:
@@ -10,7 +10,7 @@ func init() -> void:
 
 # what happens when we enter this state?
 func enter() -> void:
-	# play animation
+	
 	pass
 
 
@@ -29,16 +29,12 @@ func handle_input(_event : InputEvent) -> PlayerState:
 
 # what happens each process tick in this state?
 func process(_delta: float) -> PlayerState:
-	if player.direction.x != 0:
-		return run
-	elif player.direction.y > 0.5:
-		return crouch
+	if player.direction.y<= 0.5:
+		return idle
 	return next_state
 
 
 # what happens each physics_process tick in this state?
 func physics_process(_delta: float) -> PlayerState:
-	player.velocity.x = 0
-	if player.is_on_floor() == false:
-		return fall
+	player.velocity.x -= player.velocity.x * deceleration_rate * _delta
 	return next_state
