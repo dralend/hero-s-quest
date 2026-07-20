@@ -1,4 +1,4 @@
-@icon("res://scenes/player/state.svg")
+@icon("res://assets/player/states/state.svg")
 class_name PlayerState extends Node
 
 
@@ -10,7 +10,7 @@ var next_state : PlayerState
 @onready var run: PlayerStateRun = %run
 @onready var jump: PlayerStateJump = %jump
 @onready var fall: PlayerStateFall = %fall
-@onready var crouch: PlayerStateJump = %crouch
+@onready var crouch: PlayerStateCrouch = %crouch
 
 #endregion
 

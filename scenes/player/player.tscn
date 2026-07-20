@@ -8,11 +8,124 @@
 [ext_resource type="Script" uid="uid://c0unpl334h4bf" path="res://script/player/state/fall.gd" id="5_0owmy"]
 [ext_resource type="Script" uid="uid://cjk5usstn8em8" path="res://script/player/state/crouch.gd" id="6_0owmy"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
-radius = 12.0
-height = 54.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0owmy"]
+radius = 8.0
+height = 46.0
 
-[node name="player" type="CharacterBody2D" unique_id=1907286066]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qek5x"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_0owmy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qek5x"]
+resource_name = "crouch"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 23]
+}
+
+[sub_resource type="Animation" id="Animation_5gtgg"]
+resource_name = "fall"
+
+[sub_resource type="Animation" id="Animation_h17s1"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_je7p5"]
+resource_name = "jump"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28]
+}
+
+[sub_resource type="Animation" id="Animation_fm80t"]
+resource_name = "run"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17, 18, 19, 12, 13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gx1jg"]
+_data = {
+&"RESET": SubResource("Animation_0owmy"),
+&"crouch": SubResource("Animation_qek5x"),
+&"fall": SubResource("Animation_5gtgg"),
+&"idle": SubResource("Animation_h17s1"),
+&"jump": SubResource("Animation_je7p5"),
+&"run": SubResource("Animation_fm80t")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0owmy"]
+size = Vector2(16, 3)
+
+[sub_resource type="Gradient" id="Gradient_0owmy"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qek5x"]
+gradient = SubResource("Gradient_0owmy")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="player" type="CharacterBody2D" unique_id=1907286066 groups=["Player"]]
+z_index = 10
+collision_layer = 16
+collision_mask = 3
 script = ExtResource("1_dovo2")
 
 [node name="states" type="Node" parent="." unique_id=1430246708]
@@ -28,7 +141,6 @@ script = ExtResource("4_p47bc")
 [node name="jump" type="Node" parent="states" unique_id=1730373496]
 unique_name_in_owner = true
 script = ExtResource("4_75vfm")
-jump_velocity = null
 
 [node name="fall" type="Node" parent="states" unique_id=485692790]
 unique_name_in_owner = true
@@ -39,18 +151,42 @@ unique_name_in_owner = true
 script = ExtResource("6_0owmy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1640759888]
+position = Vector2(0, -39)
 texture = ExtResource("1_8afob")
 hframes = 16
 vframes = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=55395139]
-position = Vector2(-1, 12)
-shape = SubResource("CapsuleShape2D_dovo2")
+[node name="CollisionStand" type="CollisionShape2D" parent="." unique_id=964704040]
+position = Vector2(0, -23)
+shape = SubResource("CapsuleShape2D_0owmy")
+
+[node name="CollisionCrouch" type="CollisionShape2D" parent="." unique_id=462171719]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_qek5x")
 
 [node name="Label" type="Label" parent="." unique_id=1365190626]
 offset_left = -48.0
-offset_top = -39.0
+offset_top = -75.0
 offset_right = 47.0
-offset_bottom = -16.0
+offset_bottom = -52.0
 text = "LABEL"
 horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=578935784]
+libraries/ = SubResource("AnimationLibrary_gx1jg")
+autoplay = &"idle"
+
+[node name="OneWayPlatrormShapeCast" type="ShapeCast2D" parent="." unique_id=984305033]
+position = Vector2(0, -2)
+enabled = false
+shape = SubResource("RectangleShape2D_0owmy")
+target_position = Vector2(0, 6)
+max_results = 12
+collision_mask = 2
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1689430533]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=404586427]
+position = Vector2(0, -29)
+energy = 0.5
+texture = SubResource("GradientTexture2D_qek5x")

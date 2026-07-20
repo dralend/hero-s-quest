@@ -10,7 +10,7 @@ func init() -> void:
 
 # what happens when we enter this state?
 func enter() -> void:
-	
+	player.animation_player.play("run")
 	pass
 
 
