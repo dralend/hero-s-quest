@@ -113,12 +113,13 @@ _data = {
 size = Vector2(16, 3)
 
 [sub_resource type="Gradient" id="Gradient_0owmy"]
+offsets = PackedFloat32Array(0, 0.813253)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qek5x"]
 gradient = SubResource("Gradient_0owmy")
-width = 128
-height = 128
+width = 192
+height = 192
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 

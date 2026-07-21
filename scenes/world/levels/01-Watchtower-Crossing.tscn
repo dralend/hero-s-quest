@@ -24,7 +24,6 @@ height = 910
 metadata/_custom_type_script = "uid://dyyeswkxcyuyk"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=160819349]
-visible = false
 position = Vector2(824, 440)
 texture = ExtResource("2_6olkf")
 
@@ -75,7 +74,7 @@ target_level = "uid://b8jsltghj06fo"
 environment = SubResource("Environment_ru1h4")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="LevelTransition3" unique_id=1425530800]
-color = Color(0.0935849, 0.41162696, 0.762855, 1)
+color = Color(0.7176471, 0.8392157, 0.99215686, 1)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="LevelTransition3" unique_id=1666498057]
 position = Vector2(483, 84)

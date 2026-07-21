@@ -69,7 +69,7 @@ target_level = "uid://bqxbnaon1bum0"
 environment = SubResource("Environment_yfucn")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=501208187]
-color = Color(0.0935849, 0.41162696, 0.762855, 1)
+color = Color(0.7176471, 0.8392157, 0.99215686, 1)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=877760372]
 position = Vector2(483, 84)
