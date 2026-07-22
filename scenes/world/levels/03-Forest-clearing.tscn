@@ -54,7 +54,7 @@ tile_set = ExtResource("2_0r5dr")
 position = Vector2(0, 544)
 size = 9
 location = 0
-target_erea_name = "LevelTransition2"
+target_erea_name = "LevelTransition3"
 target_level = "uid://ccpt6ndyo6ul8"
 
 [node name="LevelTransition2" parent="." unique_id=52697342 instance=ExtResource("3_ybxvo")]

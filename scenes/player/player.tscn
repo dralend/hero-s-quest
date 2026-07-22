@@ -160,12 +160,10 @@ hframes = 16
 vframes = 4
 
 [node name="CollisionStand" type="CollisionShape2D" parent="." unique_id=964704040]
-visible = false
 position = Vector2(0, -23)
 shape = SubResource("CapsuleShape2D_0owmy")
 
 [node name="CollisionCrouch" type="CollisionShape2D" parent="." unique_id=462171719]
-visible = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_qek5x")
 
