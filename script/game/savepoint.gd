@@ -12,10 +12,20 @@ func _ready() -> void:
 
 
 func _on_player_entered (_n: Node2D) -> void:
-	
+	MessageBus.player_interacted.connect(_on_player_interacted)
+	MessageBus.input_hint_changed.emit("interact")
 	pass
 
 
 func _on_player_exited (_n: Node2D) -> void:
-	
+	MessageBus.player_interacted.disconnect(_on_player_interacted)
+	MessageBus.input_hint_changed.emit("")
+	pass
+
+
+func _on_player_interacted(player: Player) -> void:
+	SaveManager.save_game()
+	MessageBus.player_healed.emit(9999)
+	animation_player.play("game saved")
+	animation_player.seek(0)
 	pass

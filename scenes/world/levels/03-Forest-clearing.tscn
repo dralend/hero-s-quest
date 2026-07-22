@@ -1,0 +1,92 @@
+[gd_scene format=4 uid="uid://deyb1h6r54os7"]
+
+[ext_resource type="Script" uid="uid://dyyeswkxcyuyk" path="res://script/world/level/level_bounds.gd" id="1_al1uy"]
+[ext_resource type="TileSet" uid="uid://bdca5f63btqei" path="res://scenes/world/levels/mystic_forest.tres" id="2_0r5dr"]
+[ext_resource type="PackedScene" uid="uid://dmqomynv6v0v3" path="res://scenes/world/levels/transition/Level_Transition.tscn" id="3_ybxvo"]
+[ext_resource type="PackedScene" uid="uid://julk208s1ipy" path="res://scenes/world/savepoint.tscn" id="4_0r5dr"]
+
+[sub_resource type="Environment" id="Environment_ru1h4"]
+background_mode = 3
+tonemap_mode = 1
+glow_enabled = true
+glow_intensity = 1.14
+glow_bloom = 0.2
+
+[sub_resource type="Gradient" id="Gradient_ru1h4"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gqm1b"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qgx1b"]
+noise = SubResource("FastNoiseLite_gqm1b")
+color_ramp = SubResource("Gradient_ru1h4")
+seamless = true
+normalize = false
+seamless_blend_skirt = 0.5
+
+[node name="00-Mossgate-Entrance" type="Node2D" unique_id=343959129]
+
+[node name="LevelBounds" type="Node2D" parent="." unique_id=1311577685]
+z_index = 256
+script = ExtResource("1_al1uy")
+width = 1152
+height = 654
+metadata/_custom_type_script = "uid://dyyeswkxcyuyk"
+
+[node name="map layers" type="Node2D" parent="." unique_id=872702356]
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="map layers" unique_id=1365971934]
+tile_set = ExtResource("2_0r5dr")
+collision_enabled = false
+
+[node name="TileMapLayer4" type="TileMapLayer" parent="map layers" unique_id=350855577]
+tile_set = ExtResource("2_0r5dr")
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="map layers" unique_id=593342908]
+tile_set = ExtResource("2_0r5dr")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="map layers" unique_id=1237294018]
+tile_map_data = PackedByteArray("AAD//xIADAAMAAMAAAD//xMADAAMAAQAAAD//xQADAABAAIAAAAAABIADAANAAMAAAAAABMADAANAAQAAAAAABQADAACAAIAAAABABIADAAOAAMAAAABABMADAAOAAQAAAABABQADAADAAIAAAACABIADAAPAAMAAAACABMADAAPAAQAAAACABQADAABAAIAAAADABIADAACAAAAAAADABMADAACAAEAAAADABQADAACAAIAAAAEABIADAADAAAAAAAEABMADAADAAEAAAAEABQADAADAAIAAAAFABIADAABAAAAAAAFABMADAABAAEAAAAFABQADAABAAIAAAAGABIADAACAAAAAAAGABMADAACAAEAAAAGABQADAACAAIAAAAHABIADAADAAAAAAAHABMADAADAAEAAAAHABQADAADAAIAAAAIABIADAABAAAAAAAIABMADAABAAEAAAAIABQADAABAAIAAAAJABIADAACAAAAAAAJABMADAACAAEAAAAJABQADAACAAIAAAAKABIADAADAAAAAAAKABMADAADAAEAAAAKABQADAADAAIAAAALABIADAABAAAAAAALABMADAABAAEAAAALABQADAABAAIAAAAMABIADAACAAAAAAAMABMADAACAAEAAAAMABQADAACAAIAAAANABIADAADAAAAAAANABMADAADAAEAAAANABQADAADAAIAAAATABIADAADAAAAAAATABMADAADAAEAAAAUABIADAABAAAAAAAUABMADAABAAEAAAAVABIADAACAAAAAAAVABMADAACAAEAAAAWABIADAADAAAAAAAWABMADAADAAEAAAAOABIADAABAAAAAAAOABMADAABAAEAAAAPABIADAACAAAAAAAPABMADAACAAEAAAAQABIADAADAAAAAAAQABMADAADAAEAAAARABIADAABAAAAAAARABMADAABAAEAAAASABIADAACAAAAAAASABMADAACAAEAAAAQABQADAADAAIAAAARABQADAABAAIAAAASABQADAACAAIAAAAOABQADAABAAIAAAAPABQADAACAAIAAAATABQADAADAAIAAAAUABQADAACAAQAAAAVABQADAACAAQAAAAWABQADAACAAQAAAAXABQADAACAAQAAAAYABQADAACAAQAAAAZABQADAACAAQAAAAaABQADAACAAQAAAAbABQADAACAAQAAAAcABQADAACAAQAAAAdABQADAACAAQAAAAeABQADAACAAQAAAAfABQADAACAAQAAAAgABQADAACAAQAAAAhABQADAACAAQAAAAiABQADAACAAQAAAAjABQADAACAAQAAAAXABIADAABAAAAAAAXABMADAABAAEAAAAYABIADAACAAAAAAAYABMADAACAAEAAAAZABIADAADAAAAAAAZABMADAADAAEAAAAaABIADAABAAAAAAAaABMADAABAAEAAAAbABIADAACAAAAAAAbABMADAACAAEAAAAcABIADAADAAAAAAAcABMADAADAAEAAAAdABIADAABAAAAAAAdABMADAABAAEAAAAeABIADAACAAAAAAAeABMADAACAAEAAAAfABIADAADAAAAAAAfABMADAADAAEAAAAgABIADAABAAAAAAAgABMADAABAAEAAAAhABIADAACAAAAAAAhABMADAACAAEAAAAiABIADAABAAAAAAAiABMADAABAAEAAAAjABIADAACAAAAAAAjABMADAACAAEAAAAkABIADAADAAAAAAAkABMADAADAAEAAAAkABQADAADAAIAAAD//xEADAAMAAIAAAAAABEADAANAAIAAAABABEADAAOAAIAAAACABEADAAPAAIAAAA=")
+tile_set = ExtResource("2_0r5dr")
+
+[node name="LevelTransition" parent="." unique_id=47824741 instance=ExtResource("3_ybxvo")]
+position = Vector2(0, 544)
+size = 9
+location = 0
+target_erea_name = "LevelTransition2"
+target_level = "uid://ccpt6ndyo6ul8"
+
+[node name="LevelTransition2" parent="." unique_id=52697342 instance=ExtResource("3_ybxvo")]
+position = Vector2(1152, 576)
+size = 9
+location = 1
+target_erea_name = "LevelTransition"
+target_level = ""
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1758964636]
+environment = SubResource("Environment_ru1h4")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1376011957]
+color = Color(0.7176471, 0.8392157, 0.99215686, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=510276691]
+position = Vector2(483, 84)
+rotation = 0.4660029
+color = Color(0.74509805, 0.91764706, 0.99607843, 1)
+energy = 1.28
+shadow_enabled = true
+
+[node name="fogParallax2D" type="Parallax2D" parent="." unique_id=1244331947]
+visible = false
+scroll_scale = Vector2(1.3, 1)
+scroll_offset = Vector2(0, -16)
+repeat_size = Vector2(512, 256)
+repeat_times = 3
+
+[node name="fogSprite" type="Sprite2D" parent="fogParallax2D" unique_id=1496274557]
+position = Vector2(584, 376)
+texture = SubResource("NoiseTexture2D_qgx1b")
+
+[node name="savepoint" parent="." unique_id=1904917018 instance=ExtResource("4_0r5dr")]
+position = Vector2(624, 578)

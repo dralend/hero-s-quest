@@ -50,6 +50,13 @@ location = 0
 target_erea_name = "LevelTransition2"
 target_level = "uid://u4eb6ua3ysy0"
 
+[node name="LevelTransition3" parent="." unique_id=1042351163 instance=ExtResource("3_4g8fh")]
+position = Vector2(1216, 544)
+size = 6
+location = 1
+target_erea_name = "LevelTransition"
+target_level = "uid://deyb1h6r54os7"
+
 [node name="LevelTransition2" parent="." unique_id=480912272 instance=ExtResource("3_4g8fh")]
 position = Vector2(56, 656)
 size = 4

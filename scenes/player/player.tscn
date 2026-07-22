@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://c1y6qwf4jviaq" path="res://script/player/state/run.gd" id="4_p47bc"]
 [ext_resource type="Script" uid="uid://c0unpl334h4bf" path="res://script/player/state/fall.gd" id="5_0owmy"]
 [ext_resource type="Script" uid="uid://cjk5usstn8em8" path="res://script/player/state/crouch.gd" id="6_0owmy"]
+[ext_resource type="Script" uid="uid://cv6r1e7metjjp" path="res://script/player/input_hints.gd" id="8_5gtgg"]
+[ext_resource type="Texture2D" uid="uid://ccepjpmioyrtf" path="res://assets/UI/input_icons.png" id="9_h17s1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0owmy"]
 radius = 8.0
@@ -158,14 +160,17 @@ hframes = 16
 vframes = 4
 
 [node name="CollisionStand" type="CollisionShape2D" parent="." unique_id=964704040]
+visible = false
 position = Vector2(0, -23)
 shape = SubResource("CapsuleShape2D_0owmy")
 
 [node name="CollisionCrouch" type="CollisionShape2D" parent="." unique_id=462171719]
+visible = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_qek5x")
 
 [node name="Label" type="Label" parent="." unique_id=1365190626]
+visible = false
 offset_left = -48.0
 offset_top = -75.0
 offset_right = 47.0
@@ -178,6 +183,7 @@ libraries/ = SubResource("AnimationLibrary_gx1jg")
 autoplay = &"idle"
 
 [node name="OneWayPlatrormShapeCast" type="ShapeCast2D" parent="." unique_id=984305033]
+visible = false
 position = Vector2(0, -2)
 enabled = false
 shape = SubResource("RectangleShape2D_0owmy")
@@ -192,3 +198,11 @@ process_mode = 3
 position = Vector2(0, -29)
 energy = 0.5
 texture = SubResource("GradientTexture2D_qek5x")
+
+[node name="InputHints" type="Node2D" parent="." unique_id=558646845]
+position = Vector2(0, -61)
+script = ExtResource("8_5gtgg")
+
+[node name="Sprite2D" type="Sprite2D" parent="InputHints" unique_id=635481730]
+texture = ExtResource("9_h17s1")
+hframes = 16
