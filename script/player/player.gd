@@ -5,16 +5,13 @@ class_name Player extends CharacterBody2D
 @export var max_fall_velocity: float = 600
 #endregion
 
-
 #region /// on ready variables
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision_stand: CollisionShape2D = $CollisionStand
 @onready var collision_crouch: CollisionShape2D = $CollisionCrouch
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var one_way_platrorm_shape_cast: ShapeCast2D = $OneWayPlatrormShapeCast
-
 #endregion
-
 
 #region /// state machine variables
 var states: Array [PlayerState]
@@ -24,6 +21,14 @@ var previous_state: PlayerState:
 	get: return states[1]
 #endregion
 
+#region /// player stats
+var hp: float = 20
+var max_hp: float = 20
+var dash: bool = false
+var double_jump: bool = false
+var ground_slam: bool = false
+var morph_roll: bool = false
+#endregion
 
 #region /// standard variables
 var direction: Vector2 = Vector2.ZERO
