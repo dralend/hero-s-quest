@@ -20,6 +20,11 @@ SaveManager="*uid://oydl1bcugwn0"
 SceneManager="*uid://dhugw2rc17314"
 MessageBus="*uid://ds8lqoo8vla4k"
 
+[display]
+
+window/size/viewport_width=864
+window/size/viewport_height=430
+
 [global_group]
 
 Player=""
