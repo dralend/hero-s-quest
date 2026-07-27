@@ -4,6 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bdca5f63btqei" path="res://scenes/world/levels/mystic_forest.tres" id="2_0r5dr"]
 [ext_resource type="PackedScene" uid="uid://dmqomynv6v0v3" path="res://scenes/world/levels/transition/Level_Transition.tscn" id="3_ybxvo"]
 [ext_resource type="PackedScene" uid="uid://julk208s1ipy" path="res://scenes/world/savepoint.tscn" id="4_0r5dr"]
+[ext_resource type="PackedScene" uid="uid://bgqh80dakkwnd" path="res://scenes/player/playerspawn.tscn" id="5_ybxvo"]
 
 [sub_resource type="Environment" id="Environment_ru1h4"]
 background_mode = 3
@@ -117,3 +118,6 @@ texture = SubResource("NoiseTexture2D_qgx1b")
 
 [node name="savepoint" parent="." unique_id=1904917018 instance=ExtResource("4_0r5dr")]
 position = Vector2(624, 579)
+
+[node name="playerspawn" parent="." unique_id=1354034465 instance=ExtResource("5_ybxvo")]
+position = Vector2(598, 581)

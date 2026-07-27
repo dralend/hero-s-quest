@@ -54,3 +54,6 @@ func get_fade_pos(dir: String) -> Vector2:
 		"down":
 			pos *= Vector2 (0,1)
 	return pos
+
+
+#func  

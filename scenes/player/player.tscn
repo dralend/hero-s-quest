@@ -114,14 +114,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0owmy"]
 size = Vector2(16, 3)
 
-[sub_resource type="Gradient" id="Gradient_0owmy"]
-offsets = PackedFloat32Array(0, 0.813253)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_2r27f"]
+offsets = PackedFloat32Array(0, 0.23493975, 0.5120482, 0.7108434)
+colors = PackedColorArray(1, 1, 1, 1, 0.80260164, 0.7310823, 0.106860526, 1, 0.9529412, 0.27450982, 0.039215688, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qek5x"]
-gradient = SubResource("Gradient_0owmy")
-width = 192
-height = 192
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_je7p5"]
+gradient = SubResource("Gradient_2r27f")
+width = 128
+height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -195,7 +195,7 @@ process_mode = 3
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=404586427]
 position = Vector2(0, -29)
 energy = 0.5
-texture = SubResource("GradientTexture2D_qek5x")
+texture = SubResource("GradientTexture2D_je7p5")
 
 [node name="InputHints" type="Node2D" parent="." unique_id=558646845]
 position = Vector2(0, -61)

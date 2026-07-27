@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dyyeswkxcyuyk" path="res://script/world/level/level_bounds.gd" id="1_oqwbs"]
 [ext_resource type="TileSet" uid="uid://bdca5f63btqei" path="res://scenes/world/levels/mystic_forest.tres" id="2_epgo8"]
 [ext_resource type="PackedScene" uid="uid://dmqomynv6v0v3" path="res://scenes/world/levels/transition/Level_Transition.tscn" id="3_4g8fh"]
+[ext_resource type="PackedScene" uid="uid://bgqh80dakkwnd" path="res://scenes/player/playerspawn.tscn" id="4_epgo8"]
 
 [sub_resource type="Environment" id="Environment_ru1h4"]
 background_mode = 3
@@ -106,3 +107,6 @@ size = 4
 location = 3
 target_erea_name = "LevelTransition"
 target_level = ""
+
+[node name="playerspawn" parent="." unique_id=1354034465 instance=ExtResource("4_epgo8")]
+position = Vector2(48, 544)
