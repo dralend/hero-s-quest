@@ -32,7 +32,7 @@ const HINT_MAP: Dictionary ={
 		"up": 4
 	}
 }
-var controller_type: String = "keyboard"
+var controller_type: String = "nintendo"
 
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -45,7 +45,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventKey:
-		controller_type = "keyboard"
+		controller_type = "xbox"
 	elif event is InputEventJoypadButton:
 		get_controller_type(event.device)
 	pass
@@ -60,8 +60,7 @@ func get_controller_type(device_id: int) -> void:
 	elif "nintendo" in n or "switch" in n:
 		controller_type = "nintendo"
 	else:
-		controller_type = "unkown"
-		print(controller_type)
+		controller_type = "nintendo"
 	set_process_input(false)
 	pass
 
@@ -71,5 +70,5 @@ func _on_hint_changed(hint: String) -> void:
 		visible = false
 	else:
 		visible = true
-		
+		sprite.frame = HINT_MAP[controller_type].get(hint,"0")
 	pass

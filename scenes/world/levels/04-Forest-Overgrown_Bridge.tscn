@@ -122,7 +122,7 @@ position = Vector2(1152, 576)
 size = 9
 location = 1
 target_erea_name = "LevelTransition"
-target_level = ""
+target_level = "uid://dmkjejk7nrsr"
 
 [node name="LevelTransition3" parent="." unique_id=771266275 instance=ExtResource("3_qiwml")]
 position = Vector2(368, 656)

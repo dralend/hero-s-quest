@@ -22,8 +22,14 @@ var previous_state: PlayerState:
 #endregion
 
 #region /// player stats
-var hp: float = 20
-var max_hp: float = 20
+var hp: float = 20:
+	set(value):
+		hp = clampf(value, 0, max_hp)
+		MessageBus.player_health_changed.emit(hp, max_hp)
+var max_hp: float = 20:
+	set(value):
+		max_hp = value
+		MessageBus.player_health_changed.emit(hp, max_hp)
 var dash: bool = false
 var double_jump: bool = false
 var ground_slam: bool = false
@@ -50,6 +56,17 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		MessageBus.player_interacted.emit(self)
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_MINUS:
+			if Input.is_key_pressed(KEY_SHIFT):
+				max_hp -= 10
+			else:
+				hp -= 2
+		elif event.keycode == KEY_EQUAL:
+			if Input.is_key_pressed(KEY_SHIFT):
+				max_hp += 10
+			else:
+				hp += 2
 	change_state(current_state.handle_input(event))
 
 func _process(_delta: float) -> void:

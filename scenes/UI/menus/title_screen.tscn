@@ -55,7 +55,6 @@ frame = 33
 
 [node name="MainMenu" type="VBoxContainer" parent="Control" unique_id=166390504]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
