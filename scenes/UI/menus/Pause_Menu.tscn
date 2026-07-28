@@ -18,6 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control" unique_id=1278107318]
+modulate = Color(1, 1, 1, 0.25882354)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,7 +31,7 @@ color = Color(0.19793725, 0.19793722, 0.19793722, 1)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 36.0
+offset_bottom = 54.0
 grow_horizontal = 2
 color = Color(0, 0, 0, 1)
 
@@ -39,10 +40,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -138.0
-offset_top = 3.0
+offset_left = -221.0
+offset_top = 14.0
 offset_right = -4.0
-offset_bottom = 32.0
+offset_bottom = 43.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0.3019608, 0.16470589, 0.15294118, 1)
 theme_override_fonts/font = SubResource("FontVariation_x5osx")
@@ -51,6 +52,7 @@ text = "PAUSED"
 horizontal_alignment = 2
 
 [node name="PauseScreen" type="Control" parent="." unique_id=1076171607]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,19 +63,19 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="PauseScreen" unique_id=587248422]
 layout_mode = 0
 offset_left = 12.0
-offset_top = 45.0
-offset_right = 86.0
-offset_bottom = 64.0
-theme_override_font_sizes/font_size = 20
+offset_top = 66.0
+offset_right = 123.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 30
 text = "Abilities"
 
 [node name="Label2" type="Label" parent="PauseScreen" unique_id=654569641]
 layout_mode = 0
-offset_left = 144.0
-offset_top = 43.0
-offset_right = 184.0
-offset_bottom = 62.0
-theme_override_font_sizes/font_size = 20
+offset_left = 147.0
+offset_top = 65.0
+offset_right = 203.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 30
 text = "Map"
 
 [node name="Map" type="Control" parent="PauseScreen" unique_id=1755896855]
@@ -82,13 +84,23 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 145.0
-offset_top = 66.0
-offset_right = 1101.0
-offset_bottom = 541.0
+offset_top = 64.0
+offset_right = -17.0
+offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="MapNode" type="Control" parent="PauseScreen/Map" unique_id=790311297]
+custom_minimum_size = Vector2(24, 12)
+layout_mode = 1
+anchors_preset = 0
+offset_left = 38.0
+offset_top = 58.0
+offset_right = 62.0
+offset_bottom = 70.0
+
 [node name="SystemMenu" type="Button" parent="PauseScreen" unique_id=1943043120]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -105,6 +117,7 @@ theme_override_font_sizes/font_size = 30
 text = "SYSTEM"
 
 [node name="SystemScreen" type="Control" parent="." unique_id=70102353]
+unique_name_in_owner = true
 visible = false
 layout_mode = 3
 anchors_preset = 15
