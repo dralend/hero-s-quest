@@ -25,13 +25,14 @@ seamless = true
 normalize = false
 seamless_blend_skirt = 0.5
 
-[node name="00-Mossgate-Entrance" type="Node2D" unique_id=343959129]
+[node name="01-Forest-Path" type="Node2D" unique_id=343959129]
 
 [node name="LevelBounds" type="Node2D" parent="." unique_id=1311577685]
 z_index = 256
+position = Vector2(0, 94)
 script = ExtResource("1_re5ke")
 width = 1152
-height = 654
+height = 558
 metadata/_custom_type_script = "uid://dyyeswkxcyuyk"
 
 [node name="map layers" type="Node2D" parent="." unique_id=872702356]

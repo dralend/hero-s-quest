@@ -28,7 +28,7 @@ seamless = true
 normalize = false
 seamless_blend_skirt = 0.5
 
-[node name="00-Mossgate-Entrance" type="Node2D" unique_id=343959129]
+[node name="00-Forest-Entrance" type="Node2D" unique_id=343959129]
 
 [node name="LevelBounds" type="Node2D" parent="." unique_id=1311577685]
 z_index = 256

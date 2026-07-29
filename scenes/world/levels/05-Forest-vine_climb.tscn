@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dyyeswkxcyuyk" path="res://script/world/level/level_bounds.gd" id="1_38s13"]
 [ext_resource type="TileSet" uid="uid://bdca5f63btqei" path="res://scenes/world/levels/mystic_forest.tres" id="2_05pri"]
 [ext_resource type="PackedScene" uid="uid://dmqomynv6v0v3" path="res://scenes/world/levels/transition/Level_Transition.tscn" id="3_fa1qs"]
+[ext_resource type="PackedScene" uid="uid://bgqh80dakkwnd" path="res://scenes/player/playerspawn.tscn" id="4_05pri"]
 
 [sub_resource type="Environment" id="Environment_ru1h4"]
 background_mode = 3
@@ -24,7 +25,7 @@ seamless = true
 normalize = false
 seamless_blend_skirt = 0.5
 
-[node name="00-Mossgate-Entrance" type="Node2D" unique_id=343959129]
+[node name="05-Forest-vine_climb" type="Node2D" unique_id=343959129]
 
 [node name="LevelBounds" type="Node2D" parent="." unique_id=1311577685]
 z_index = 256
@@ -133,3 +134,6 @@ repeat_times = 3
 [node name="fogSprite" type="Sprite2D" parent="fogParallax2D" unique_id=1496274557]
 position = Vector2(584, 376)
 texture = SubResource("NoiseTexture2D_qgx1b")
+
+[node name="playerspawn" parent="." unique_id=1354034465 instance=ExtResource("4_05pri")]
+position = Vector2(29, 543)

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://u3ypwge3eobk" path="res://script/UI/MENU/title_screen.gd" id="1_lnwv8"]
 [ext_resource type="PackedScene" uid="uid://bq2awihr32vlc" path="res://scenes/item/brazier.tscn" id="3_nf844"]
 [ext_resource type="Texture2D" uid="uid://7ricdr8yo40w" path="res://assets/player/hero.png" id="4_28pmk"]
-[ext_resource type="Texture2D" uid="uid://c8k5lfxhe5mul" path="res://assets/UI/heros quest.png" id="4_sawwn"]
+[ext_resource type="Texture2D" uid="uid://dot53yo2t88wy" path="res://assets/UI/ChatGPT Image Jul 28, 2026, 05_26_25 PM.png" id="5_0yfp3"]
 
 [node name="TitleScreen" type="CanvasLayer" unique_id=1809226464]
 layer = 5
@@ -72,9 +72,9 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/MainMenu/logo" unique_id=1345955604]
-position = Vector2(127, -24)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("4_sawwn")
+position = Vector2(120, -55)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_0yfp3")
 
 [node name="newgame" type="Button" parent="Control/MainMenu" unique_id=814338677]
 unique_name_in_owner = true
