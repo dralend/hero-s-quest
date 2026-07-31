@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bag21y8byd3rj" path="res://script/UI/health/player_hud.gd" id="1_7blhl"]
 [ext_resource type="Texture2D" uid="uid://bx4ky0hr3mj4b" path="res://assets/UI/health/health_bar_frame.png" id="1_ctqhd"]
+[ext_resource type="Script" uid="uid://cnuumvmf7ywvl" path="res://script/global/visual_effects/hit_particle_settings.gd" id="3_s6fv1"]
 
 [sub_resource type="Gradient" id="Gradient_7blhl"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -20,7 +21,7 @@ height = 10
 [sub_resource type="GDScript" id="GDScript_7blhl"]
 script/source = "extends Button
 
-
+@export var particle_settings: HitParticleSettings
 
 func _ready() -> void:
 	pressed.connect(_on_pressed)
@@ -28,9 +29,15 @@ func _ready() -> void:
 
 
 func _on_pressed() -> void:
-	VisualEffects.camera_shake(10)
+	var pos: Vector2 = get_tree().get_first_node_in_group(\"Player\").global_position
+	VisualEffects.hit_particles(pos, Vector2(1, 0), particle_settings)
 	pass
 "
+
+[sub_resource type="Resource" id="Resource_rv5p0"]
+script = ExtResource("3_s6fv1")
+count = 200
+metadata/_custom_type_script = "uid://cnuumvmf7ywvl"
 
 [node name="PlayerHud" type="CanvasLayer" unique_id=882079610]
 process_mode = 3
@@ -93,3 +100,4 @@ offset_bottom = 29.0
 grow_horizontal = 0
 text = "Test Particles"
 script = SubResource("GDScript_7blhl")
+particle_settings = SubResource("Resource_rv5p0")
