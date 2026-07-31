@@ -2,7 +2,7 @@
 @icon ("res://assets/icons/map_node.svg")
 class_name MapNode extends Control
 
-const SCALE_FACTOR: float = 16
+const SCALE_FACTOR: float = 20
 
 @export_file("*.tscn") var linked_scene: String: set = _on_scene_set
 @export_tool_button("Update") var update_node_action = update_node
@@ -79,28 +79,29 @@ func create_entrance_data(transition: Array[leveltransition]) -> void:
 	entrances_left.clear()
 	entrances_right.clear()
 	for t in transition:
+		var pos: Vector2 = (t.position - indicator_offset) / SCALE_FACTOR
 		if t.location == leveltransition.SIDE.LEFT:
 			var offset: float = clampf(
-				self.size.y + (-t.global_position.y/ SCALE_FACTOR),
-				3.0, self.size.y - 3
+				pos.y - 6,
+				3.0, self.size.y - 9
 			)
 			entrances_left.append(offset)
 		elif t.location == leveltransition.SIDE.RIGHT:
 			var offset: float = clampf(
-				self.size.y + (-t.global_position.y/ SCALE_FACTOR),
-				3.0, self.size.y - 3
+				pos.y - 6,
+				3.0, self.size.y - 9
 			)
 			entrances_right.append(offset)
 		elif t.location == leveltransition.SIDE.TOP:
 			var offset: float = clampf(
-				t.global_position.x/ SCALE_FACTOR,
-				3.0, self.size.x - 3
+				pos.x - 6,
+				3.0, self.size.x - 9
 			)
 			entrances_top.append(offset)
 		elif t.location == leveltransition.SIDE.BOTTOM:
 			var offset: float = clampf(
-				t.global_position.x/ SCALE_FACTOR,
-				3.0, self.size.x - 3
+				pos.x - 6,
+				3.0, self.size.x - 9
 			)
 			entrances_bottom.append(offset)
 	pass
@@ -113,22 +114,22 @@ func create_transition_blocks() -> void:
 		c.queue_free()
 	for t in entrances_left:
 		var block: ColorRect = add_block()
-		block.size.y = 8
+		block.size.y = 6
 		block.position.x = 0
 		block.position.y = t
 	for t in entrances_right:
 		var block: ColorRect = add_block()
-		block.size.y = 8
+		block.size.y = 6
 		block.position.x = self.size.x - 2
 		block.position.y = t
 	for t in entrances_top:
 		var block: ColorRect = add_block()
-		block.size.x = 8
+		block.size.x = 6
 		block.position.y = 0
 		block.position.x = t
 	for t in entrances_bottom:
 		var block: ColorRect = add_block()
-		block.size.x = 8
+		block.size.x = 6
 		block.position.y = self.size.y - 2
 		block.position.x = t
 	

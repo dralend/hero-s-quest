@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bgqh80dakkwnd" path="res://scenes/player/playerspawn.tscn" id="4_whugk"]
 [ext_resource type="PackedScene" uid="uid://dmqomynv6v0v3" path="res://scenes/world/levels/transition/Level_Transition.tscn" id="5_fl7cp"]
 [ext_resource type="PackedScene" uid="uid://bq2awihr32vlc" path="res://scenes/item/brazier.tscn" id="5_g4ea3"]
+[ext_resource type="Script" uid="uid://dyc5ncead6mrg" path="res://script/game/music_auto_trigger.gd" id="7_vi0wr"]
+[ext_resource type="AudioStream" uid="uid://dj28ly6yo8uds" path="res://assets/audio/music/forest_01.ogg" id="8_ybq3u"]
 
 [sub_resource type="Environment" id="Environment_ru1h4"]
 background_mode = 3
@@ -120,3 +122,8 @@ target_level = "uid://u4eb6ua3ysy0"
 
 [node name="brazier" parent="." unique_id=2044579694 instance=ExtResource("5_g4ea3")]
 position = Vector2(278, 569)
+
+[node name="MusicAutoTrigger" type="Node" parent="." unique_id=1401354485]
+script = ExtResource("7_vi0wr")
+track = ExtResource("8_ybq3u")
+metadata/_custom_type_script = "uid://dyc5ncead6mrg"

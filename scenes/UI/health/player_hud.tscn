@@ -17,6 +17,22 @@ colors = PackedColorArray(0.8627451, 0.34117648, 0.34117648, 1, 0.9019608, 0.501
 gradient = SubResource("Gradient_s6fv1")
 height = 10
 
+[sub_resource type="GDScript" id="GDScript_7blhl"]
+script/source = "extends Button
+
+
+
+func _ready() -> void:
+	pressed.connect(_on_pressed)
+	pass 
+
+
+func _on_pressed() -> void:
+	var player: Node2D = get_tree().get_first_node_in_group(\"Player\")
+	VisualEffects.jump_dust(player.global_position)
+	pass
+"
+
 [node name="PlayerHud" type="CanvasLayer" unique_id=882079610]
 process_mode = 3
 layer = 2
@@ -65,3 +81,16 @@ value = 50.0
 nine_patch_stretch = true
 texture_under = SubResource("GradientTexture2D_rij1u")
 texture_progress = SubResource("GradientTexture2D_kxgk2")
+
+[node name="Button" type="Button" parent="Control" unique_id=1281803910]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -83.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = 29.0
+grow_horizontal = 0
+text = "Test Dust"
+script = SubResource("GDScript_7blhl")

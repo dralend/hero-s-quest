@@ -5,16 +5,17 @@ extends CanvasLayer
 @onready var new_game_menu: VBoxContainer = %NewGameMenu
 @onready var load_game_menu: VBoxContainer = %loadGameMenu
 
-@onready var newgame: Button = %newgame
-@onready var loadgame: Button = %Loadgame
+@onready var newgame: Button = %newgameButton
+@onready var loadgame: Button = %LoadgameButton
 
-@onready var new_slot_01: Button = %newSlot01
-@onready var new_slot_02: Button = %newSlot02
-@onready var new_slot_03: Button = %newSlot03
+@onready var new_slot_01: Button = %newSlot01Button
+@onready var new_slot_02: Button = %newSlot02Button
+@onready var new_slot_03: Button = %newSlot03Button
 
-@onready var load_slot_01: Button = %LoadSlot01
-@onready var load_slot_02: Button = %LoadSlot02
-@onready var load_slot_03: Button = %LoadSlot03
+@onready var load_slot_01: Button = %LoadSlot01Button
+@onready var load_slot_02: Button = %LoadSlot02Button
+@onready var load_slot_03: Button = %LoadSlot03Button
+
 #endregion
 
 
@@ -28,6 +29,8 @@ func _ready() -> void:
 	load_slot_01.pressed.connect(_on_load_game_pressed.bind(0))
 	load_slot_02.pressed.connect(_on_load_game_pressed.bind(1))
 	load_slot_03.pressed.connect(_on_load_game_pressed.bind(2))
+	
+	Audio.setup_button_audio(self)
 	
 	show_main_menu()
 	#animation_player.animation_finished.connect(_on_animation_finished)

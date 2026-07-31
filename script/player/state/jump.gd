@@ -3,6 +3,8 @@ class_name PlayerStateJump extends PlayerState
 @export var jump_velocity: float = 450.0
 
 
+
+
 # what happens when this state is initialized?
 func init() -> void:
 	
@@ -11,6 +13,7 @@ func init() -> void:
 
 # what happens when we enter this state?
 func enter() -> void:
+	VisualEffects.jump_dust(player.global_position)
 	player.animation_player.play("jump")
 	player.animation_player.pause()
 	player.velocity.y = -jump_velocity

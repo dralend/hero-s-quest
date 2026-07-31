@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c1vb4q5nh6li0"]
+
+[ext_resource type="Script" uid="uid://bfjhyrrgkmrxr" path="res://script/global/audio/audio.gd" id="1_sirkr"]
+[ext_resource type="AudioStream" uid="uid://bt35buso8l1lq" path="res://assets/audio/ui_bloop_audio.wav" id="2_8qs3y"]
+[ext_resource type="AudioStream" uid="uid://do02kihp0ejvu" path="res://assets/audio/ui_select_audio.wav" id="3_ybdjd"]
+[ext_resource type="AudioStream" uid="uid://dqvh7xfrdfe6y" path="res://assets/audio/ui_woosh.wav" id="4_dfoqk"]
+[ext_resource type="AudioStream" uid="uid://c8k6x163hkngg" path="res://assets/audio/ui_success_audio.wav" id="5_5fnun"]
+[ext_resource type="AudioStream" uid="uid://c38q04cim7l5x" path="res://assets/audio/ui_error_audio.wav" id="6_n113c"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_awnp4"]
+
+[node name="Audio" type="Node" unique_id=3625559]
+process_mode = 3
+script = ExtResource("1_sirkr")
+ui_focus_audio = ExtResource("2_8qs3y")
+ui_select_audio = ExtResource("3_ybdjd")
+ui_cancel_audio = ExtResource("4_dfoqk")
+ui_success_audio = ExtResource("5_5fnun")
+ui_error_audio = ExtResource("6_n113c")
+
+[node name="Music1" type="AudioStreamPlayer" parent="." unique_id=1192104888]
+unique_name_in_owner = true
+bus = &"Music"
+
+[node name="Music2" type="AudioStreamPlayer" parent="." unique_id=1505466662]
+unique_name_in_owner = true
+bus = &"Music"
+
+[node name="UI" type="AudioStreamPlayer" parent="." unique_id=234892011]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamPolyphonic_awnp4")
+bus = &"UI"
