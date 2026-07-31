@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c0unpl334h4bf" path="res://script/player/state/fall.gd" id="5_0owmy"]
 [ext_resource type="Script" uid="uid://cjk5usstn8em8" path="res://script/player/state/crouch.gd" id="6_0owmy"]
 [ext_resource type="Script" uid="uid://cv6r1e7metjjp" path="res://script/player/input_hints.gd" id="8_5gtgg"]
+[ext_resource type="Script" uid="uid://nidw7rmj5iov" path="res://script/player/player_camera.gd" id="8_h17s1"]
 [ext_resource type="Texture2D" uid="uid://ccepjpmioyrtf" path="res://assets/UI/input_icons.png" id="9_h17s1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0owmy"]
@@ -191,6 +192,7 @@ collision_mask = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1689430533]
 process_mode = 3
+script = ExtResource("8_h17s1")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=404586427]
 position = Vector2(0, -29)

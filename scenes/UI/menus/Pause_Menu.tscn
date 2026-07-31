@@ -105,7 +105,6 @@ horizontal_alignment = 2
 
 [node name="PauseScreen" type="Control" parent="." unique_id=1076171607]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -152,7 +151,7 @@ offset_right = 58.0
 offset_bottom = 101.0
 linked_scene = "uid://q4je7fq7nedp"
 entrances_top = Array[float]([])
-entrances_right = Array[float]([17.85])
+entrances_right = Array[float]([16.85])
 entrances_left = Array[float]([])
 entrances_bottom = Array[float]([])
 
@@ -437,6 +436,7 @@ text = "SYSTEM"
 
 [node name="SystemScreen" type="Control" parent="." unique_id=70102353]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

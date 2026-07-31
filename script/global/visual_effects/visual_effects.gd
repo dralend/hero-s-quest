@@ -30,7 +30,7 @@ func hit_dust(pos: Vector2) -> void:
 	pass
 
 
-func hit_particles() -> void:
+func hit_particles(pos: Vector2, dir: Vector2, settings: HitParticleSettings) -> void:
 	
 	pass
 
