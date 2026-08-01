@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b76ccokru1cmx"
-path="res://.godot/imported/hero's quest.png-b421f04ac7b98267490eb361e5abe536.ctex"
+uid="uid://5xqaacnad0b2"
+path="res://.godot/imported/hero.png-5b17f7104d07c528442b37c1f6453be4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/hero's quest.png"
-dest_files=["res://.godot/imported/hero's quest.png-b421f04ac7b98267490eb361e5abe536.ctex"]
+source_file="res://assets/UI/hero.png"
+dest_files=["res://.godot/imported/hero.png-5b17f7104d07c528442b37c1f6453be4.ctex"]
 
 [params]
 
