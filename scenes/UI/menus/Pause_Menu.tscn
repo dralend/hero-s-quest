@@ -379,10 +379,10 @@ entrances_bottom = Array[float]([])
 [node name="MapNode19" parent="PauseScreen/Map" unique_id=1779114469 instance=ExtResource("2_0uqg4")]
 modulate = Color(0.38039216, 0.5686275, 0.3019608, 1)
 layout_mode = 0
-offset_left = 1.0
-offset_top = 109.0
-offset_right = 41.0
-offset_bottom = 131.0
+offset_left = -4.0
+offset_top = 108.0
+offset_right = 36.0
+offset_bottom = 130.0
 linked_scene = ""
 entrances_top = Array[float]([])
 entrances_right = Array[float]([])

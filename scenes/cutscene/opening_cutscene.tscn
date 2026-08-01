@@ -1,3 +1,15 @@
 [gd_scene format=3 uid="uid://dcmeg1ktnjaxl"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqy2i"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
 [node name="Opening Cutscene" type="Node2D" unique_id=1505236879]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=605778191]
+sprite_frames = SubResource("SpriteFrames_dqy2i")
+frame_progress = 1.0
