@@ -1,16 +1,27 @@
 class_name Player extends CharacterBody2D
 
+#region /// signals
+signal damage_taken
+#endregion
+
 #region /// export variables
 @export var move_speed: float = 150
 @export var max_fall_velocity: float = 600
 #endregion
 
 #region /// on ready variables
+
+@onready var attack_sprite: Sprite2D = $Sprite2D/AttackSprite2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision_stand: CollisionShape2D = $CollisionStand
 @onready var collision_crouch: CollisionShape2D = $CollisionCrouch
+@onready var da_stand: CollisionShape2D = $DamageArea/DAStand
+@onready var da_crouch: CollisionShape2D = $DamageArea/DACrouch
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var one_way_platrorm_shape_cast: ShapeCast2D = $OneWayPlatrormShapeCast
+@onready var attack_area: AttackArea = %AttackArea
+@onready var damage_area: DamageArea = %DamageArea
+
 #endregion
 
 #region /// state machine variables
@@ -50,10 +61,14 @@ func _ready() -> void:
 	initialize_states()
 	self.call_deferred("reparent", get_tree().root)
 	MessageBus.player_healed.connect(_on_player_healed)
+	damage_area.damage_taken.connect(_on_damage_taken)
+	hp = max_hp
 	pass
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_released("jump") and velocity.y < 0:
+		velocity.y *= .05
 	if event.is_action_pressed("action"):
 		MessageBus.player_interacted.emit(self)
 	elif event.is_action_pressed("pause"):
@@ -61,17 +76,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		var pause_menu: PauseMenu = load("uid://bxwjf8xin2q1i").instantiate()
 		add_child(pause_menu)
 		return
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_MINUS:
-			if Input.is_key_pressed(KEY_SHIFT):
-				max_hp -= 10
-			else:
-				hp -= 2
-		elif event.keycode == KEY_EQUAL:
-			if Input.is_key_pressed(KEY_SHIFT):
-				max_hp += 10
-			else:
-				hp += 2
+	
+	if OS.is_debug_build():
+		if event is InputEventKey and event.pressed:
+			if event.keycode == KEY_MINUS:
+				if Input.is_key_pressed(KEY_SHIFT):
+					max_hp -= 10
+				else:
+					hp -= 2
+			elif event.keycode == KEY_EQUAL:
+				if Input.is_key_pressed(KEY_SHIFT):
+					max_hp += 10
+				else:
+					hp += 2
+	
 	change_state(current_state.handle_input(event))
 
 func _process(_delta: float) -> void:
@@ -85,8 +103,6 @@ func _physics_process(_delta: float) -> void:
 	velocity.y = clampf(velocity.y, -1000.0, max_fall_velocity)
 	move_and_slide()
 	change_state(current_state.physics_process(_delta))
-	
-	
 	pass
 
 
@@ -130,14 +146,24 @@ func update_direction() -> void:
 	var y_axis = Input.get_axis("up", "down")
 	direction = Vector2(x_axis, y_axis)
 	if prev_direction.x != direction.x:
+		attack_area.flip(direction.x)
 		if direction.x < 0:
 			sprite.flip_h = true
+			attack_sprite.flip_h = true
+			attack_sprite.position.x = -24
 		elif direction.x > 0:
 			sprite.flip_h = false
+			attack_sprite.flip_h = false
+			attack_sprite.position.x = 24
 	pass
 
 
 func _on_player_healed(amount: float) -> void:
 	hp += amount
-	
+	pass
+
+
+func _on_damage_taken(attack_area: AttackArea) -> void:
+	hp -= attack_area.damage
+	damage_taken.emit()
 	pass

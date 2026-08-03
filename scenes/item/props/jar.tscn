@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://j1ju3l81cmfk"]
+
+[ext_resource type="Script" uid="uid://dfe5uis15d282" path="res://script/item/Breakable.gd" id="1_u3ljl"]
+
+[node name="jar" type="Node2D" unique_id=1378657603]
+script = ExtResource("1_u3ljl")
+metadata/_custom_type_script = "uid://dfe5uis15d282"

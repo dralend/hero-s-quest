@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dgv5b2csq6kre"]
+
+[ext_resource type="Script" uid="uid://dfe5uis15d282" path="res://script/item/Breakable.gd" id="1_bep6v"]
+[ext_resource type="Script" uid="uid://cnuumvmf7ywvl" path="res://script/global/visual_effects/hit_particle_settings.gd" id="2_d1vts"]
+[ext_resource type="Resource" uid="uid://m8pb7r3uk7i" path="res://scenes/globals/visual_effects/hit_particle/hit_wood_small.tres" id="3_l1mgf"]
+[ext_resource type="Resource" uid="uid://pvcwphc4k27d" path="res://scenes/globals/visual_effects/hit_particle/hit_wood_large.tres" id="4_ghg0p"]
+[ext_resource type="Resource" uid="uid://oaquuokgx81b" path="res://scenes/globals/visual_effects/hit_particle/hit_wood_medium.tres" id="5_hdkot"]
+[ext_resource type="Texture2D" uid="uid://i8cvls2or2n7" path="res://assets/general/sprites/props_destructible.png" id="6_akrb6"]
+[ext_resource type="Script" uid="uid://cwk0swndckhjl" path="res://script/UI/areas/damage_area.gd" id="7_rrd0j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bfhc"]
+size = Vector2(39, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bep6v"]
+size = Vector2(37, 30)
+
+[node name="Breakable" type="Node2D" unique_id=2133752391]
+script = ExtResource("1_bep6v")
+hit_particles = Array[ExtResource("2_d1vts")]([ExtResource("3_l1mgf")])
+destroy_particles = Array[ExtResource("2_d1vts")]([ExtResource("4_ghg0p"), ExtResource("5_hdkot"), ExtResource("3_l1mgf")])
+metadata/_custom_type_script = "uid://dfe5uis15d282"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=221079989]
+texture = ExtResource("6_akrb6")
+centered = false
+region_enabled = true
+region_rect = Rect2(53, 28, 39, 35)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=485715502]
+position = Vector2(19, 17)
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("7_rrd0j")
+metadata/_custom_type_script = "uid://cwk0swndckhjl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1998774617]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_2bfhc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=363002298]
+position = Vector2(19, 17)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=380821585]
+position = Vector2(0.5, 3)
+shape = SubResource("RectangleShape2D_bep6v")

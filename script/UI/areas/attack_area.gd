@@ -1,9 +1,7 @@
 @icon("res://assets/icons/attack_area.svg")
 class_name AttackArea extends Area2D
 
-
-
-
+@export var damage: float = 1
 
 
 
@@ -19,6 +17,9 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is DamageArea:
 		body.take_damage(self)
+		var pos: Vector2 = global_position
+		pos.x = body.global_position.x
+		VisualEffects.hit_dust(pos)
 		pass
 	pass
 
@@ -36,7 +37,12 @@ func set_active(value: bool = true) ->void:
 	pass
 
 
-
+func flip(direction_x: float) -> void:
+	if direction_x > 0:
+		scale.x = 1
+	elif direction_x < 0:
+		scale.x = -1
+	pass
 
 
 

@@ -20,7 +20,7 @@ func enter() -> void:
 	player.animation_player.play("jump")
 	player.animation_player.pause()
 	player.gravity_mulitplier = fall_gravity_mulitplier
-	if player.previous_state == jump:
+	if player.previous_state == jump or player.previous_state == attack:
 		coyote_timer = 0
 	else:
 		coyote_timer = coyote_time
@@ -36,6 +36,8 @@ func exit()-> void:
 
 # what happens when an input is pressed?
 func handle_input(_event : InputEvent) -> PlayerState:
+	if _event.is_action_pressed("attack"):
+		return attack
 	if _event.is_action_pressed("jump"):
 		if coyote_timer > 0:
 			return jump
@@ -59,7 +61,7 @@ func physics_process(_delta: float) -> PlayerState:
 		if buffer_timer > 0:
 			return jump
 		return idle
-	#player.velocity.x = player.move_speed
+	player.velocity.x = player.direction.x * player.move_speed
 	return next_state
 
 

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://5lv08by05ur5"]
+
+[ext_resource type="Script" uid="uid://cuhw04g6h0qun" path="res://script/item/test_dummy.gd" id="1_jr7sc"]
+[ext_resource type="Script" uid="uid://cnuumvmf7ywvl" path="res://script/global/visual_effects/hit_particle_settings.gd" id="2_d6368"]
+[ext_resource type="Script" uid="uid://cwk0swndckhjl" path="res://script/UI/areas/damage_area.gd" id="2_lpdj1"]
+[ext_resource type="Texture2D" uid="uid://i8cvls2or2n7" path="res://assets/general/sprites/props_destructible.png" id="3_d6368"]
+[ext_resource type="Resource" uid="uid://m8pb7r3uk7i" path="res://scenes/globals/visual_effects/hit_particle/hit_wood_small.tres" id="3_fawnp"]
+[ext_resource type="AudioStream" uid="uid://x3ky0na21gal" path="res://assets/audio/audio/hit.wav" id="6_fawnp"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ai8vd"]
+load_path = "res://.godot/imported/props_destructible.png-e984795c41e8d9f4c7c8a2cfec6795d9.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esq2g"]
+atlas = SubResource("CompressedTexture2D_ai8vd")
+region = Rect2(17, 10, 14, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkr4j"]
+atlas = ExtResource("3_d6368")
+region = Rect2(15, 52, 18, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fawnp"]
+size = Vector2(14, 32)
+
+[node name="TestDummy" type="Node2D" unique_id=1018737281]
+script = ExtResource("1_jr7sc")
+particles = Array[ExtResource("2_d6368")]([ExtResource("3_fawnp")])
+
+[node name="BodySprite" type="Sprite2D" parent="." unique_id=19548155]
+position = Vector2(0, -4)
+texture = SubResource("AtlasTexture_esq2g")
+offset = Vector2(0, -19)
+region_rect = Rect2(15, 52, 18, 12)
+
+[node name="BaseSprite" type="Sprite2D" parent="." unique_id=1233131804]
+texture = SubResource("AtlasTexture_bkr4j")
+region_rect = Rect2(15, 52, 18, 12)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=2035152659]
+collision_layer = 96
+collision_mask = 0
+script = ExtResource("2_lpdj1")
+audio = ExtResource("6_fawnp")
+metadata/_custom_type_script = "uid://cwk0swndckhjl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=650707590]
+position = Vector2(0, -26)
+shape = SubResource("RectangleShape2D_fawnp")
+debug_color = Color(0, 0.6, 0.69803923, 0)

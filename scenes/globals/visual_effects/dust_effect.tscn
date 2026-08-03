@@ -78,7 +78,7 @@ _data = {
 }
 
 [node name="DustEffect" type="Sprite2D" unique_id=941891112]
-z_index = 3
+z_index = 20
 texture = ExtResource("1_vlhci")
 hframes = 8
 vframes = 3

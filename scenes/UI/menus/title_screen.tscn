@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://bdca5f63btqei" path="res://scenes/world/levels/mystic_forest.tres" id="1_2yh5c"]
 [ext_resource type="Script" uid="uid://u3ypwge3eobk" path="res://script/UI/MENU/title_screen.gd" id="1_lnwv8"]
-[ext_resource type="PackedScene" uid="uid://bq2awihr32vlc" path="res://scenes/item/brazier.tscn" id="3_nf844"]
+[ext_resource type="PackedScene" uid="uid://bq2awihr32vlc" path="res://scenes/item/props/brazier.tscn" id="3_nf844"]
 [ext_resource type="Texture2D" uid="uid://7ricdr8yo40w" path="res://assets/player/hero.png" id="4_28pmk"]
 [ext_resource type="Texture2D" uid="uid://5xqaacnad0b2" path="res://assets/UI/hero.png" id="5_sawwn"]
 [ext_resource type="Script" uid="uid://dyc5ncead6mrg" path="res://script/game/music_auto_trigger.gd" id="6_sawwn"]
