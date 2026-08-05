@@ -5,6 +5,8 @@ class_name PlayerStateFall extends PlayerState
 @export var coyote_time: float = 0.125
 @export var jump_buffer_time: float = 0.2
 
+@onready var land_audio: AudioStreamPlayer2D = %landAudio
+
 var coyote_timer: float = 0
 var buffer_timer: float = 0
 
@@ -20,8 +22,14 @@ func enter() -> void:
 	player.animation_player.play("jump")
 	player.animation_player.pause()
 	player.gravity_mulitplier = fall_gravity_mulitplier
-	if player.previous_state == jump or player.previous_state == attack:
+	if player.jump_count == 0:
+		player.jump_count = 1
+	var prev: PlayerState = player.previous_state
+	if player.previous_state == jump or prev == attack or prev == dash:
 		coyote_timer = 0
+	elif player.previous_state == crouch:
+		coyote_timer = 0
+		player.jump_count = 1
 	else:
 		coyote_timer = coyote_time
 	pass
@@ -36,10 +44,15 @@ func exit()-> void:
 
 # what happens when an input is pressed?
 func handle_input(_event : InputEvent) -> PlayerState:
+	if _event.is_action_pressed("dash") and player.can_dash():
+		return dash
 	if _event.is_action_pressed("attack"):
 		return attack
 	if _event.is_action_pressed("jump"):
 		if coyote_timer > 0:
+			player.jump_count = 0
+			return jump
+		elif player.jump_count <= 1 and player.double_jump:
 			return jump
 		else:
 			buffer_timer = jump_buffer_time
@@ -58,7 +71,9 @@ func process(_delta: float) -> PlayerState:
 func physics_process(_delta: float) -> PlayerState:
 	if player.is_on_floor():
 		VisualEffects.land_dust(player.global_position)
+		land_audio.play()
 		if buffer_timer > 0:
+			player.jump_count = 0
 			return jump
 		return idle
 	player.velocity.x = player.direction.x * player.move_speed

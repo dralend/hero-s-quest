@@ -42,6 +42,13 @@ func show_game_over() -> void:
 
 
 func clear_game_over() -> void:
+	load_button.visible = false
+	quit_button.visible = false
+	
+	await SceneManager.scene_entered
+	game_over.visible = false
+	var player: Player = get_tree().get_first_node_in_group("Player")
+	player.queue_free()
 	
 	pass
 

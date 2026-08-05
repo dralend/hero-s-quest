@@ -2,7 +2,7 @@ class_name PlayerStateJump extends PlayerState
 
 @export var jump_velocity: float = 450.0
 
-
+@onready var jump_audio: AudioStreamPlayer2D = %JumpAudio
 
 
 # what happens when this state is initialized?
@@ -13,10 +13,13 @@ func init() -> void:
 
 # what happens when we enter this state?
 func enter() -> void:
-	VisualEffects.jump_dust(player.global_position)
+	if player.is_on_floor():
+		VisualEffects.jump_dust(player.global_position)
+	else:
+		VisualEffects.hit_dust(player.global_position)
 	player.animation_player.play("jump")
 	player.animation_player.pause()
-	player.velocity.y = -jump_velocity
+	do_jump()
 	if player.previous_state == fall and not Input.is_action_just_pressed("jump"):
 		await get_tree().physics_frame
 		player.velocity.y *= 0.5
@@ -32,6 +35,8 @@ func exit()-> void:
 
 # what happens when an input is pressed?
 func handle_input(_event : InputEvent) -> PlayerState:
+	if _event.is_action_pressed("dash") and player.can_dash():
+		return dash
 	if _event.is_action_pressed("attack"):
 		return attack
 	if _event.is_action_released("jump"):
@@ -54,6 +59,18 @@ func physics_process(_delta: float) -> PlayerState:
 		return fall
 	player.velocity.x = player.direction.x * player.move_speed
 	return next_state
+
+
+func do_jump() -> void:
+	if player.jump_count > 0:
+		if player.double_jump == false:
+			return
+		elif player.jump_count > 1:
+			return
+	player.jump_count += 1
+	player.velocity.y = -jump_velocity
+	jump_audio.play()
+	pass
 
 
 func set_jump_frame() -> void:

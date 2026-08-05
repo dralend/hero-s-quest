@@ -87,7 +87,6 @@ visible = false
 color = Color(0.5564752, 0.74691, 0.9864945, 1)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=510276691]
-visible = false
 position = Vector2(483.00003, 84)
 rotation = 0.4660029
 color = Color(0.74509805, 0.91764706, 0.99607843, 1)

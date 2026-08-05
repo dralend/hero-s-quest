@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://u3ypwge3eobk" path="res://script/UI/MENU/title_screen.gd" id="1_lnwv8"]
 [ext_resource type="PackedScene" uid="uid://bq2awihr32vlc" path="res://scenes/item/props/brazier.tscn" id="3_nf844"]
 [ext_resource type="Texture2D" uid="uid://7ricdr8yo40w" path="res://assets/player/hero.png" id="4_28pmk"]
-[ext_resource type="Texture2D" uid="uid://5xqaacnad0b2" path="res://assets/UI/hero.png" id="5_sawwn"]
+[ext_resource type="Texture2D" uid="uid://b0vvp8bcpdopa" path="res://assets/theron's quest.png" id="5_sawwn"]
 [ext_resource type="Script" uid="uid://dyc5ncead6mrg" path="res://script/game/music_auto_trigger.gd" id="6_sawwn"]
 [ext_resource type="AudioStream" uid="uid://ceuxqkarbbnct" path="res://assets/audio/music/title_01.ogg" id="7_lnwv8"]
 
@@ -93,8 +93,8 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/MainMenu/logo" unique_id=1345955604]
-position = Vector2(117.99999, -66.99999)
-scale = Vector2(0.2, 0.2)
+position = Vector2(115.99999, -36.999992)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_sawwn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/MainMenu/logo" unique_id=239648056]

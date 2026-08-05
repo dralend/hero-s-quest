@@ -1,5 +1,11 @@
-class_name PlayerStateIdle extends PlayerState
+class_name PlayerStateGroundSlam extends PlayerState
 
+const DASH_AUDIO = preload("uid://dmg8ec6qcvcmp")
+
+@export var velocity: float = 400
+@export var effect_delay: float = 0.075
+
+var effect_timer: float = 0
 
 
 # what happens when this state is initialized?
@@ -10,9 +16,9 @@ func init() -> void:
 
 # what happens when we enter this state?
 func enter() -> void:
-	player.animation_player.play("idle")
-	player.jump_count = 0
-	player.dash_count = 0
+	player.animation_player.play("ground_slam")
+	player.sprite.tween_color()
+	Audio.play_spatial_sound(DASH_AUDIO, player.global_position)
 	pass
 
 
@@ -24,27 +30,17 @@ func exit()-> void:
 
 # what happens when an input is pressed?
 func handle_input(_event : InputEvent) -> PlayerState:
-	if _event.is_action_pressed("dash") and player.can_dash():
-		return dash
-	if _event.is_action_pressed("attack"):
-		return attack
-	if _event.is_action_pressed("jump"):
-		return jump
+	
 	return next_state
 
 
 # what happens each process tick in this state?
 func process(_delta: float) -> PlayerState:
-	if player.direction.x != 0:
-		return run
-	elif player.direction.y > 0.5:
-		return crouch
+	
 	return next_state
 
 
 # what happens each physics_process tick in this state?
 func physics_process(_delta: float) -> PlayerState:
-	player.velocity.x = 0
-	if player.is_on_floor() == false:
-		return fall
+	
 	return next_state

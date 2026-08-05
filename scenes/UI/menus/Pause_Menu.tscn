@@ -182,7 +182,7 @@ entrances_left = Array[float]([16.1])
 entrances_bottom = Array[float]([3.0])
 
 [node name="MapNode4" parent="PauseScreen/Map" unique_id=250077397 instance=ExtResource("2_0uqg4")]
-modulate = Color(0.38039216, 0.5686275, 0.3019608, 1)
+modulate = Color(0.9815722, 0.5815757, 0.53755796, 1)
 layout_mode = 0
 offset_left = 181.0
 offset_top = 86.0
