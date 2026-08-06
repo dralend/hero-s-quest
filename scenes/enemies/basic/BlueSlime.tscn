@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://dd7hrki6o46b4"]
+
+[ext_resource type="Script" uid="uid://dhe0ripukud46" path="res://script/enemies/basic/slime.gd" id="1_vjd8a"]
+[ext_resource type="AudioStream" uid="uid://cuy156oahh0re" path="res://assets/enemies/enemies/slime/slime_death.wav" id="2_rsfra"]
+[ext_resource type="Texture2D" uid="uid://bktdjvqdjs67n" path="res://assets/enemies/enemies/slime/slime.png" id="2_w18tn"]
+[ext_resource type="Script" uid="uid://dc6lxe7j4xhdh" path="res://script/UI/areas/hazard_area.gd" id="3_w18tn"]
+[ext_resource type="Script" uid="uid://cwk0swndckhjl" path="res://script/UI/areas/damage_area.gd" id="4_rsfra"]
+[ext_resource type="AudioStream" uid="uid://u46dq8w8kj8p" path="res://assets/enemies/enemies/slime/slime_hit.wav" id="5_jvfun"]
+[ext_resource type="Script" uid="uid://878b4fnff43a" path="res://script/enemies/edge_detector.gd" id="7_sigvn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vjd8a"]
+radius = 9.0
+height = 26.0
+
+[sub_resource type="Animation" id="Animation_jvfun"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rsfra"]
+resource_name = "death"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11, 17]
+}
+
+[sub_resource type="Animation" id="Animation_sigvn"]
+resource_name = "stun"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_qnvc8"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iwit3"]
+_data = {
+&"RESET": SubResource("Animation_jvfun"),
+&"death": SubResource("Animation_rsfra"),
+&"stun": SubResource("Animation_sigvn"),
+&"walk": SubResource("Animation_qnvc8")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvfun"]
+size = Vector2(22, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jq0ec"]
+size = Vector2(22, 17)
+
+[node name="BlueSlime" type="CharacterBody2D" unique_id=546901292]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_vjd8a")
+death_sound = ExtResource("2_rsfra")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1543479320]
+visible = false
+position = Vector2(0, -9)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vjd8a")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1354901640]
+position = Vector2(0, -16)
+texture = ExtResource("2_w18tn")
+hframes = 6
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1774565438]
+libraries/ = SubResource("AnimationLibrary_iwit3")
+
+[node name="HazardArea" type="Area2D" parent="." unique_id=970337741]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("3_w18tn")
+metadata/_custom_type_script = "uid://dc6lxe7j4xhdh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=434479505]
+position = Vector2(-1, -8.5)
+shape = SubResource("RectangleShape2D_jvfun")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1418868686]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("4_rsfra")
+audio = ExtResource("5_jvfun")
+metadata/_custom_type_script = "uid://cwk0swndckhjl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1069752196]
+position = Vector2(-1, -17)
+shape = SubResource("RectangleShape2D_jq0ec")
+
+[node name="EdgeDetector" type="RayCast2D" parent="." unique_id=307474329]
+position = Vector2(7, 0)
+target_position = Vector2(0, 8)
+script = ExtResource("7_sigvn")
+metadata/_custom_type_script = "uid://878b4fnff43a"

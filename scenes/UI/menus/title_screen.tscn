@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://u3ypwge3eobk" path="res://script/UI/MENU/title_screen.gd" id="1_lnwv8"]
 [ext_resource type="PackedScene" uid="uid://bq2awihr32vlc" path="res://scenes/item/props/brazier.tscn" id="3_nf844"]
 [ext_resource type="Texture2D" uid="uid://7ricdr8yo40w" path="res://assets/player/hero.png" id="4_28pmk"]
-[ext_resource type="Texture2D" uid="uid://dmfhfwn3q5o6f" path="res://assets/xznxnm.png" id="5_sawwn"]
+[ext_resource type="Texture2D" uid="uid://buafx2dhnuioy" path="res://assets/TheronsQuest_TitleAnimation.png" id="5_sawwn"]
 [ext_resource type="Script" uid="uid://dyc5ncead6mrg" path="res://script/game/music_auto_trigger.gd" id="6_sawwn"]
 [ext_resource type="AudioStream" uid="uid://ceuxqkarbbnct" path="res://assets/audio/music/title_01.ogg" id="7_lnwv8"]
 
@@ -12,11 +12,36 @@
 length = 2.0
 loop_mode = 1
 step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_lnwv8"]
 resource_name = "move and fade"
-length = 2.0
+length = 0.9
+loop_mode = 1
 step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4o1wd"]
 _data = {
@@ -82,9 +107,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -125.0
-offset_top = -50.0
+offset_top = -15.0
 offset_right = 125.0
-offset_bottom = 154.0
+offset_bottom = 189.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -93,13 +118,14 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/MainMenu/logo" unique_id=1345955604]
-position = Vector2(126, -42.999992)
-scale = Vector2(0.3, 0.3)
+position = Vector2(117, -81)
 texture = ExtResource("5_sawwn")
+hframes = 3
+vframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/MainMenu/logo" unique_id=239648056]
 libraries/ = SubResource("AnimationLibrary_4o1wd")
-autoplay = &"RESET"
+autoplay = &"move and fade"
 
 [node name="newgameButton" type="Button" parent="Control/MainMenu" unique_id=814338677]
 unique_name_in_owner = true

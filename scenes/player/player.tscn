@@ -496,7 +496,6 @@ bus = &"SFX"
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=1804779476]
 unique_name_in_owner = true
-visible = false
 z_index = 3
 position = Vector2(0, -23)
 collision_layer = 0

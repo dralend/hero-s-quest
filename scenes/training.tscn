@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://dyc5ncead6mrg" path="res://script/game/music_auto_trigger.gd" id="14_jhlec"]
 [ext_resource type="AudioStream" uid="uid://cvcbbsodolbt2" path="res://assets/audio/music/dungeon_01.ogg" id="15_qujom"]
 [ext_resource type="PackedScene" uid="uid://cywmqbrj2eqwf" path="res://scenes/player/ability_pickup.tscn" id="17_j5onp"]
+[ext_resource type="PackedScene" uid="uid://dd7hrki6o46b4" path="res://scenes/enemies/basic/BlueSlime.tscn" id="18_xnrx1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ihin"]
 size = Vector2(127, 286)
@@ -187,4 +188,19 @@ track = ExtResource("15_qujom")
 metadata/_custom_type_script = "uid://dyc5ncead6mrg"
 
 [node name="AbilityPickup" parent="." unique_id=1292143175 instance=ExtResource("17_j5onp")]
+position = Vector2(230, 289)
+type = 1
+
+[node name="AbilityPickup2" parent="." unique_id=1610592468 instance=ExtResource("17_j5onp")]
+position = Vector2(257, 289)
+
+[node name="AbilityPickup3" parent="." unique_id=1026661319 instance=ExtResource("17_j5onp")]
 position = Vector2(284, 289)
+type = 2
+
+[node name="AbilityPickup4" parent="." unique_id=976215885 instance=ExtResource("17_j5onp")]
+position = Vector2(310, 289)
+type = 3
+
+[node name="slime" parent="." unique_id=546901292 instance=ExtResource("18_xnrx1")]
+position = Vector2(29, 641)

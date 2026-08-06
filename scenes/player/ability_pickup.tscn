@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cywmqbrj2eqwf"]
 
+[ext_resource type="Script" uid="uid://bvjnucsy58r0f" path="res://script/player/ability_pickup.gd" id="1_3ud5l"]
 [ext_resource type="Texture2D" uid="uid://dica0paljudpe" path="res://assets/player/sprites/abilities.png" id="1_kmox7"]
 [ext_resource type="Script" uid="uid://dfe5uis15d282" path="res://script/item/Breakable.gd" id="2_60pfy"]
 [ext_resource type="AudioStream" uid="uid://dfol8g4135mcn" path="res://assets/audio/audio/ability_crack.wav" id="3_3ud5l"]
@@ -43,6 +44,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_0o4i5"]
 resource_name = "double_jump"
 length = 0.5
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -76,7 +78,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_oqfqs"]
-resource_name = "mroph_roll"
+resource_name = "morph_roll"
 length = 0.5
 loop_mode = 1
 step = 0.1
@@ -99,7 +101,7 @@ _data = {
 &"dash": SubResource("Animation_3ud5l"),
 &"double_jump": SubResource("Animation_0o4i5"),
 &"ground_slam": SubResource("Animation_oy88t"),
-&"mroph_roll": SubResource("Animation_oqfqs")
+&"morph_roll": SubResource("Animation_oqfqs")
 }
 
 [sub_resource type="Animation" id="Animation_65le4"]
@@ -128,6 +130,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_4y2sr"]
 resource_name = "default"
@@ -147,7 +161,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_tb02i"]
 resource_name = "destroy"
-length = 0.2
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -168,10 +181,22 @@ tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ji8e"]
@@ -206,6 +231,7 @@ metadata/_custom_type_script = "uid://cnuumvmf7ywvl"
 radius = 12.0
 
 [node name="AbilityPickup" type="Node2D" unique_id=1292143175]
+script = ExtResource("1_3ud5l")
 
 [node name="AbilitySprite" type="Sprite2D" parent="." unique_id=1527730277]
 unique_name_in_owner = true
@@ -240,7 +266,7 @@ destroyed_audio = ExtResource("4_0o4i5")
 metadata/_custom_type_script = "uid://dfe5uis15d282"
 
 [node name="DamageArea" type="Area2D" parent="Breakable" unique_id=1557097411]
-collision_layer = 64
+collision_layer = 192
 collision_mask = 0
 script = ExtResource("5_oy88t")
 metadata/_custom_type_script = "uid://cwk0swndckhjl"

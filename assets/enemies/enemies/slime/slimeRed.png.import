@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0vvp8bcpdopa"
-path="res://.godot/imported/theron's quest.png-1c0b0e3746e4aa583924c59a2c20ecc0.ctex"
+uid="uid://cg7xl7oqe8lac"
+path="res://.godot/imported/slimeRed.png-8f233f05a714de455526b9f7921fd5c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/theron's quest.png"
-dest_files=["res://.godot/imported/theron's quest.png-1c0b0e3746e4aa583924c59a2c20ecc0.ctex"]
+source_file="res://assets/enemies/enemies/slime/slimeRed.png"
+dest_files=["res://.godot/imported/slimeRed.png-8f233f05a714de455526b9f7921fd5c1.ctex"]
 
 [params]
 
