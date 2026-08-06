@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://ddpox3hj3ahie" path="res://script/UI/areas/attack_area.gd" id="11_je7p5"]
 [ext_resource type="Script" uid="uid://drrd7gift3rwo" path="res://script/player/state/ground_slam.gd" id="11_yj68g"]
 [ext_resource type="Script" uid="uid://cj3lfp4tw4gst" path="res://script/player/player_sprite.gd" id="12_3j4b4"]
+[ext_resource type="Script" uid="uid://cjq6b4p571xx0" path="res://script/player/state/morph_ball.gd" id="12_ioxgp"]
 [ext_resource type="Script" uid="uid://cwk0swndckhjl" path="res://script/UI/areas/damage_area.gd" id="14_ugbui"]
 [ext_resource type="AudioStream" uid="uid://builtbxyqtr5l" path="res://assets/audio/audio/aargh.wav" id="16_myrg7"]
 [ext_resource type="AudioStream" uid="uid://b0yhbm36m7vq3" path="res://assets/audio/audio/jump.wav" id="18_lgqa7"]
@@ -29,6 +30,23 @@ height = 46.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qek5x"]
 radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fm80t"]
+size = Vector2(66, 21.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ioxgp"]
+size = Vector2(34, 55)
+
+[sub_resource type="Gradient" id="Gradient_2r27f"]
+offsets = PackedFloat32Array(0, 0.23493975, 0.5120482, 0.7108434)
+colors = PackedColorArray(1, 1, 1, 1, 0.80260164, 0.7310823, 0.106860526, 1, 0.9529412, 0.27450982, 0.039215688, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_je7p5"]
+gradient = SubResource("Gradient_2r27f")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Animation" id="Animation_0owmy"]
 length = 0.001
@@ -187,6 +205,24 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_ioxgp"]
+resource_name = "ball"
+length = 0.225
+loop_mode = 1
+step = 0.075
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07692308, 0.15384616),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [44, 45, 46]
+}
+
 [sub_resource type="Animation" id="Animation_qek5x"]
 resource_name = "crouch"
 length = 0.2
@@ -324,6 +360,7 @@ _data = {
 &"RESET": SubResource("Animation_0owmy"),
 &"attack": SubResource("Animation_gx1jg"),
 &"attack_2": SubResource("Animation_ugbui"),
+&"ball": SubResource("Animation_ioxgp"),
 &"crouch": SubResource("Animation_qek5x"),
 &"dash": SubResource("Animation_8ydkj"),
 &"death": SubResource("Animation_kvlxm"),
@@ -338,26 +375,8 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0owmy"]
 size = Vector2(16, 3)
 
-[sub_resource type="Gradient" id="Gradient_2r27f"]
-offsets = PackedFloat32Array(0, 0.23493975, 0.5120482, 0.7108434)
-colors = PackedColorArray(1, 1, 1, 1, 0.80260164, 0.7310823, 0.106860526, 1, 0.9529412, 0.27450982, 0.039215688, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_je7p5"]
-gradient = SubResource("Gradient_2r27f")
-width = 128
-height = 128
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ugbui"]
-radius = 8.0
-height = 46.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fcs02"]
-radius = 8.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fm80t"]
-size = Vector2(66, 21.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj68g"]
+size = Vector2(22, 6)
 
 [node name="player" type="CharacterBody2D" unique_id=1907286066 groups=["Player"]]
 z_index = 10
@@ -407,6 +426,10 @@ script = ExtResource("10_8ydkj")
 unique_name_in_owner = true
 script = ExtResource("11_yj68g")
 
+[node name="MorphBall" type="Node" parent="states" unique_id=1932185987]
+unique_name_in_owner = true
+script = ExtResource("12_ioxgp")
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1640759888]
 position = Vector2(0, -39)
 texture = ExtResource("1_8afob")
@@ -430,37 +453,6 @@ visible = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_qek5x")
 
-[node name="Label" type="Label" parent="." unique_id=1365190626]
-visible = false
-offset_left = -48.0
-offset_top = -75.0
-offset_right = 47.0
-offset_bottom = -52.0
-text = "LABEL"
-horizontal_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=578935784]
-libraries/ = SubResource("AnimationLibrary_gx1jg")
-
-[node name="OneWayPlatrormShapeCast" type="ShapeCast2D" parent="." unique_id=984305033]
-visible = false
-position = Vector2(0, -2)
-enabled = false
-shape = SubResource("RectangleShape2D_0owmy")
-target_position = Vector2(0, 6)
-max_results = 12
-collision_mask = 2
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1689430533]
-process_mode = 3
-zoom = Vector2(2, 2)
-script = ExtResource("8_h17s1")
-
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=404586427]
-position = Vector2(0, -29)
-energy = 0.5
-texture = SubResource("GradientTexture2D_je7p5")
-
 [node name="InputHints" type="Node2D" parent="." unique_id=558646845]
 position = Vector2(0, -61)
 script = ExtResource("8_5gtgg")
@@ -477,29 +469,13 @@ collision_mask = 16
 script = ExtResource("14_ugbui")
 metadata/_custom_type_script = "uid://cwk0swndckhjl"
 
-[node name="DAStand" type="CollisionShape2D" parent="DamageArea" unique_id=1772305108]
+[node name="DAStand" type="CollisionShape2D" parent="DamageArea" unique_id=1914089970]
 position = Vector2(0, -23)
-shape = SubResource("CapsuleShape2D_ugbui")
+shape = SubResource("CapsuleShape2D_0owmy")
 
-[node name="DACrouch" type="CollisionShape2D" parent="DamageArea" unique_id=1384218611]
-position = Vector2(0, -16)
-shape = SubResource("CapsuleShape2D_fcs02")
-disabled = true
-
-[node name="AttackArea" type="Area2D" parent="DamageArea" unique_id=1804779476]
-unique_name_in_owner = true
-visible = false
-z_index = 3
-position = Vector2(0, -23)
-collision_layer = 0
-collision_mask = 96
-script = ExtResource("11_je7p5")
-metadata/_custom_type_script = "uid://ddpox3hj3ahie"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea/AttackArea" unique_id=342813586]
-position = Vector2(33, -1.25)
-shape = SubResource("RectangleShape2D_fm80t")
-debug_color = Color(1, 0, 0, 0.41960785)
+[node name="DACrouch" type="CollisionShape2D" parent="DamageArea" unique_id=260405892]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_qek5x")
 
 [node name="Audio" type="Node2D" parent="." unique_id=11490037]
 position = Vector2(0, -28)
@@ -517,3 +493,97 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = ExtResource("19_8ydkj")
 bus = &"SFX"
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=1804779476]
+unique_name_in_owner = true
+visible = false
+z_index = 3
+position = Vector2(0, -23)
+collision_layer = 0
+collision_mask = 96
+script = ExtResource("11_je7p5")
+metadata/_custom_type_script = "uid://ddpox3hj3ahie"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=342813586]
+position = Vector2(33, -1.25)
+shape = SubResource("RectangleShape2D_fm80t")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="GroundSlamAttackArea" type="Area2D" parent="." unique_id=91215617]
+unique_name_in_owner = true
+visible = false
+collision_layer = 0
+collision_mask = 96
+monitorable = false
+script = ExtResource("11_je7p5")
+metadata/_custom_type_script = "uid://ddpox3hj3ahie"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundSlamAttackArea" unique_id=1468327864]
+position = Vector2(0, -18.5)
+shape = SubResource("RectangleShape2D_ioxgp")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="stuff" type="Node2D" parent="." unique_id=1538763067]
+
+[node name="Camera2D" type="Camera2D" parent="stuff" unique_id=1689430533]
+process_mode = 3
+zoom = Vector2(2, 2)
+script = ExtResource("8_h17s1")
+
+[node name="PointLight2D" type="PointLight2D" parent="stuff" unique_id=404586427]
+position = Vector2(0, -29)
+energy = 0.5
+texture = SubResource("GradientTexture2D_je7p5")
+
+[node name="Label" type="Label" parent="stuff" unique_id=1365190626]
+visible = false
+offset_left = -48.0
+offset_top = -75.0
+offset_right = 47.0
+offset_bottom = -52.0
+text = "LABEL"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="stuff" unique_id=578935784]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_gx1jg")
+
+[node name="OneWayPlatrormShapeCast" type="ShapeCast2D" parent="stuff" unique_id=984305033]
+visible = false
+position = Vector2(0, -2)
+enabled = false
+shape = SubResource("RectangleShape2D_0owmy")
+target_position = Vector2(0, 6)
+max_results = 12
+collision_mask = 2
+
+[node name="GroundSlamShapeCast" type="ShapeCast2D" parent="stuff" unique_id=144523917]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -3)
+enabled = false
+shape = SubResource("RectangleShape2D_yj68g")
+target_position = Vector2(0, 18)
+max_results = 12
+collision_mask = 192
+collide_with_areas = true
+
+[node name="BallRays" type="Node2D" parent="." unique_id=1247318612]
+
+[node name="BallRayUp" type="RayCast2D" parent="BallRays" unique_id=916815065]
+unique_name_in_owner = true
+position = Vector2(0, -4)
+enabled = false
+exclude_parent = false
+target_position = Vector2(0, -44)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="BallRayDown" type="RayCast2D" parent="BallRays" unique_id=1414706701]
+unique_name_in_owner = true
+position = Vector2(0, -1)
+enabled = false
+exclude_parent = false
+target_position = Vector2(0, 6)
+collision_mask = 3
+hit_from_inside = true

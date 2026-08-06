@@ -17,8 +17,8 @@ signal damage_taken
 @onready var collision_crouch: CollisionShape2D = $CollisionCrouch
 @onready var da_stand: CollisionShape2D = $DamageArea/DAStand
 @onready var da_crouch: CollisionShape2D = $DamageArea/DACrouch
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var one_way_platrorm_shape_cast: ShapeCast2D = $OneWayPlatrormShapeCast
+@onready var animation_player: AnimationPlayer = $stuff/AnimationPlayer
+@onready var one_way_platrorm_shape_cast: ShapeCast2D = $stuff/OneWayPlatrormShapeCast
 @onready var attack_area: AttackArea = %AttackArea
 @onready var damage_area: DamageArea = %DamageArea
 
@@ -124,7 +124,7 @@ func initialize_states() -> void:
 	
 	change_state(current_state)
 	current_state.enter()
-	$Label.text = current_state.name
+	$stuff/Label.text = current_state.name
 	pass
 
 
@@ -138,7 +138,7 @@ func change_state(new_state: PlayerState) -> void:
 	states.push_front(new_state)
 	current_state.enter()
 	states.resize(3)
-	$Label.text = current_state.name
+	$stuff/Label.text = current_state.name
 	pass
 
 
@@ -175,5 +175,11 @@ func _on_damage_taken(attack_area: AttackArea) -> void:
 
 func can_dash() -> bool:
 	if dash == false or dash_count > 0:
+		return false
+	return true
+
+
+func can_morph() -> bool:
+	if morph_roll == false:
 		return false
 	return true

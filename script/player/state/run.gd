@@ -28,6 +28,8 @@ func handle_input(_event : InputEvent) -> PlayerState:
 		return attack
 	if _event.is_action_pressed("jump"):
 		return jump
+	if _event.is_action_pressed("ball") and player.can_morph():
+		return morph_ball
 	return next_state
 
 
