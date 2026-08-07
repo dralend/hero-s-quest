@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://do5uhdtijwrkj"]
+
+[ext_resource type="Script" uid="uid://dbc5ulyo3i5p0" path="res://script/enemies/enemy.gd" id="1_tcx6s"]
+[ext_resource type="Texture2D" uid="uid://rd4iu0u8fc0p" path="res://assets/enemies/enemies/slime/slimeGreen.png" id="2_out1l"]
+[ext_resource type="Script" uid="uid://dc6lxe7j4xhdh" path="res://script/UI/areas/hazard_area.gd" id="3_t6e3p"]
+[ext_resource type="Script" uid="uid://cwk0swndckhjl" path="res://script/UI/areas/damage_area.gd" id="4_36w6x"]
+[ext_resource type="AudioStream" uid="uid://u46dq8w8kj8p" path="res://assets/enemies/enemies/slime/slime_hit.wav" id="5_7novt"]
+[ext_resource type="Script" uid="uid://878b4fnff43a" path="res://script/enemies/edge_detector.gd" id="6_q22uq"]
+[ext_resource type="Script" uid="uid://dvv5qos48b8jh" path="res://script/enemies/engine/enemy_state_machine.gd" id="7_7novt"]
+[ext_resource type="Script" uid="uid://dudn57m83bu23" path="res://script/enemies/engine/decision_engine.gd" id="8_q22uq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n0y0y"]
+radius = 9.0
+height = 26.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eodkd"]
+size = Vector2(22, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bu6bx"]
+size = Vector2(22, 17)
+
+[sub_resource type="Animation" id="Animation_pqu1p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vo6t3"]
+resource_name = "death"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11, 17]
+}
+
+[sub_resource type="Animation" id="Animation_ntva1"]
+resource_name = "stun"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_7j6b6"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_my4gp"]
+_data = {
+&"RESET": SubResource("Animation_pqu1p"),
+&"death": SubResource("Animation_vo6t3"),
+&"stun": SubResource("Animation_ntva1"),
+&"walk": SubResource("Animation_7j6b6")
+}
+
+[node name="GreenSlime" type="CharacterBody2D" unique_id=87450171]
+script = ExtResource("1_tcx6s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=936413139]
+position = Vector2(0, -15)
+texture = ExtResource("2_out1l")
+hframes = 6
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=603691621]
+visible = false
+position = Vector2(0, -9)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_n0y0y")
+
+[node name="HazardArea" type="Area2D" parent="." unique_id=252094447]
+position = Vector2(0, -9)
+rotation = 1.5707964
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("3_t6e3p")
+metadata/_custom_type_script = "uid://dc6lxe7j4xhdh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=471391564]
+position = Vector2(-1, -8.5)
+shape = SubResource("RectangleShape2D_eodkd")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1651628668]
+position = Vector2(0, -9)
+rotation = 1.5707964
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("4_36w6x")
+audio = ExtResource("5_7novt")
+metadata/_custom_type_script = "uid://cwk0swndckhjl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=575875626]
+position = Vector2(-1, -17)
+shape = SubResource("RectangleShape2D_bu6bx")
+
+[node name="EdgeDetector" type="RayCast2D" parent="." unique_id=1505395990]
+position = Vector2(-3.059797e-07, -2)
+rotation = 1.5707964
+target_position = Vector2(0, 8)
+script = ExtResource("6_q22uq")
+metadata/_custom_type_script = "uid://878b4fnff43a"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=431405856]
+libraries/ = SubResource("AnimationLibrary_my4gp")
+autoplay = &"walk"
+
+[node name="EnemyStateMachine" type="Node" parent="." unique_id=508361622]
+script = ExtResource("7_7novt")
+metadata/_custom_type_script = "uid://dvv5qos48b8jh"
+
+[node name="DecisionEngine" type="Node" parent="." unique_id=55142640]
+script = ExtResource("8_q22uq")
+metadata/_custom_type_script = "uid://dudn57m83bu23"

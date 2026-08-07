@@ -11,7 +11,7 @@ func _ready() -> void:
 	pass
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var _is_colliding: bool = is_colliding()
 	if colliding != _is_colliding:
 		colliding = _is_colliding

@@ -1,7 +1,38 @@
 [gd_scene format=3 uid="uid://j1ju3l81cmfk"]
 
 [ext_resource type="Script" uid="uid://dfe5uis15d282" path="res://script/item/Breakable.gd" id="1_u3ljl"]
+[ext_resource type="Script" uid="uid://cwk0swndckhjl" path="res://script/UI/areas/damage_area.gd" id="2_ueech"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7eqi"]
+size = Vector2(22, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ymwav"]
+size = Vector2(22, 21)
 
 [node name="jar" type="Node2D" unique_id=1378657603]
 script = ExtResource("1_u3ljl")
 metadata/_custom_type_script = "uid://dfe5uis15d282"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=966608682]
+centered = false
+region_enabled = true
+region_rect = Rect2(108, 37, 24, 27)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1605347759]
+position = Vector2(19, 17)
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("2_ueech")
+metadata/_custom_type_script = "uid://cwk0swndckhjl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=534336975]
+position = Vector2(-7, -3.5)
+shape = SubResource("RectangleShape2D_k7eqi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1483387119]
+position = Vector2(19, 17)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1752614479]
+position = Vector2(-7, -1.5)
+shape = SubResource("RectangleShape2D_ymwav")

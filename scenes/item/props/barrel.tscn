@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bobvmqwb3ik86"]
+
+[ext_resource type="Script" uid="uid://dfe5uis15d282" path="res://script/item/Breakable.gd" id="1_i5ulm"]
+[ext_resource type="Script" uid="uid://cnuumvmf7ywvl" path="res://script/global/visual_effects/hit_particle_settings.gd" id="2_sy7qp"]
+[ext_resource type="Resource" uid="uid://m8pb7r3uk7i" path="res://scenes/globals/visual_effects/hit_particle/hit_wood_small.tres" id="3_jtoqt"]
+[ext_resource type="Resource" uid="uid://pvcwphc4k27d" path="res://scenes/globals/visual_effects/hit_particle/hit_wood_large.tres" id="4_72a61"]
+[ext_resource type="Resource" uid="uid://oaquuokgx81b" path="res://scenes/globals/visual_effects/hit_particle/hit_wood_medium.tres" id="5_75yjw"]
+[ext_resource type="Script" uid="uid://cwk0swndckhjl" path="res://script/UI/areas/damage_area.gd" id="7_xstk2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qy8fh"]
+load_path = "res://.godot/imported/props_destructible.png-e984795c41e8d9f4c7c8a2cfec6795d9.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5ulm"]
+size = Vector2(22, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sy7qp"]
+size = Vector2(22, 21)
+
+[node name="Breakable" type="Node2D" unique_id=2133752391]
+script = ExtResource("1_i5ulm")
+hit_particles = Array[ExtResource("2_sy7qp")]([ExtResource("3_jtoqt")])
+destroy_particles = Array[ExtResource("2_sy7qp")]([ExtResource("4_72a61"), ExtResource("5_75yjw"), ExtResource("3_jtoqt")])
+metadata/_custom_type_script = "uid://dfe5uis15d282"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=221079989]
+texture = SubResource("CompressedTexture2D_qy8fh")
+centered = false
+region_enabled = true
+region_rect = Rect2(108, 37, 24, 27)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=485715502]
+position = Vector2(19, 17)
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("7_xstk2")
+metadata/_custom_type_script = "uid://cwk0swndckhjl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1588287664]
+position = Vector2(-7, -3.5)
+shape = SubResource("RectangleShape2D_i5ulm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=363002298]
+position = Vector2(19, 17)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=889407450]
+position = Vector2(-7, -1.5)
+shape = SubResource("RectangleShape2D_sy7qp")
